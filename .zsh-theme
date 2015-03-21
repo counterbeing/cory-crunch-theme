@@ -15,7 +15,7 @@
 
 CRUNCH_BRACKET_COLOR="%{$fg[red]%}"
 CRUNCH_TIME_COLOR="%{$fg[yellow]%}"
-CRUNCH_RVM_COLOR="%{$fg[magenta]%}"
+CRUNCH_RVM_COLOR="%{$fg[orange]%}"
 CRUNCH_DIR_COLOR="%{$fg[cyan]%}"
 CRUNCH_GIT_BRANCH_COLOR="%{$fg[green]%}"
 CRUNCH_GIT_CLEAN_COLOR="%{$fg[green]%}"
