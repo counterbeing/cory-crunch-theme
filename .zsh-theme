@@ -17,6 +17,7 @@ CRUNCH_BRACKET_COLOR="%{$fg[red]%}"
 CRUNCH_TIME_COLOR="%{$fg[yellow]%}"
 CRUNCH_RVM_COLOR="%{$fg[orange]%}"
 CRUNCH_DIR_COLOR="%{$fg[cyan]%}"
+CRUNCH_NVM_COLOR="%{$fg[green]%}"
 CRUNCH_GIT_BRANCH_COLOR="%{$fg[green]%}"
 CRUNCH_GIT_CLEAN_COLOR="%{$fg[green]%}"
 CRUNCH_GIT_DIRTY_COLOR="%{$fg[red]%}"
@@ -36,8 +37,29 @@ else
     CRUNCH_RVM_="$CRUNCH_BRACKET_COLOR"["$CRUNCH_RVM_COLOR\${\$(rbenv version | sed -e 's/ (set.*$//' -e 's/^ruby-//')}$CRUNCH_BRACKET_COLOR"]"%{$reset_color%}"
   fi
 fi
+
+
+# Node Version Manager (NVM)
+# NVM_VERSION="$(nvm current)"
+
+function nvm_prompt_info() {
+  [ -d "$HOME/.nvm" ] || return
+  local nvm_prompt
+  nvm_prompt=$(node -v 2>/dev/null)
+  [[ "${nvm_prompt}x" == "x" ]] && return
+  nvm_prompt=${nvm_prompt:1}
+  echo "${ZSH_THEME_NVM_PROMPT_PREFIX}${nvm_prompt}${ZSH_THEME_NVM_PROMPT_SUFFIX}"
+} 
+
+
+if [ -e ~/.nvm ]; then
+  if which nvm &> /dev/null; then
+    CRUNCH_NVM_="$CRUNCH_NVM_COLOR"["$CRUNCH_NVM_COLOR$(nvm_prompt_info)$CRUNCH_NVM_COLOR"]"%{$reset_color%}"
+  fi
+fi
+
 CRUNCH_DIR_="$CRUNCH_DIR_COLOR%~\$(git_prompt_info) "
 CRUNCH_PROMPT="$CRUNCH_BRACKET_COLOR➭ "
 
 # Put it all together!
-PROMPT="$CRUNCH_TIME_$CRUNCH_RVM_$CRUNCH_DIR_$CRUNCH_PROMPT%{$reset_color%}"
+PROMPT="$CRUNCH_TIME_$CRUNCH_RVM_$CRUNCH_NVM_$CRUNCH_DIR_$CRUNCH_PROMPT%{$reset_color%}"
