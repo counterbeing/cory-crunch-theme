@@ -42,22 +42,22 @@ fi
 # Node Version Manager (NVM)
 # NVM_VERSION="$(nvm current)"
 
-function nvm_prompt_info() {
-  [ -d "$HOME/.nvm" ] || return
-  local nvm_prompt
-  nvm_prompt=$(node -v 2>/dev/null)
-  [[ "${nvm_prompt}x" == "x" ]] && return
-  nvm_prompt=${nvm_prompt:1}
-  echo "${ZSH_THEME_NVM_PROMPT_PREFIX}${nvm_prompt}${ZSH_THEME_NVM_PROMPT_SUFFIX}"
-} 
-
-
-if [ -e ~/.nvm ]; then
-  if which nvm &> /dev/null; then
-    CRUNCH_NVM_="$CRUNCH_NVM_COLOR"["$CRUNCH_NVM_COLOR$(nvm_prompt_info)$CRUNCH_NVM_COLOR"]"%{$reset_color%}"
-  fi
-fi
-
+# function nvm_prompt_info() {
+#   [ -d "$HOME/.nvm" ] || return
+#   local nvm_prompt
+#   nvm_prompt=$(node -v 2>/dev/null)
+#   [[ "${nvm_prompt}x" == "x" ]] && return
+#   nvm_prompt=${nvm_prompt:1}
+#   echo "${ZSH_THEME_NVM_PROMPT_PREFIX}${nvm_prompt}${ZSH_THEME_NVM_PROMPT_SUFFIX}"
+# } 
+#
+#
+# if [ -e ~/.nvm ]; then
+#   if which nvm &> /dev/null; then
+#     CRUNCH_NVM_="$CRUNCH_NVM_COLOR"["$CRUNCH_NVM_COLOR$(nvm_prompt_info)$CRUNCH_NVM_COLOR"]"%{$reset_color%}"
+#   fi
+# fi
+#
 CRUNCH_DIR_="$CRUNCH_DIR_COLOR%~\$(git_prompt_info) "
 CRUNCH_PROMPT="$CRUNCH_BRACKET_COLOR➭ "
 
